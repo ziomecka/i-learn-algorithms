@@ -14,7 +14,6 @@ describe.each(scenarios)("isPalindrome", ({ data, result }) => {
 
   it(description, () => {
     const is = isPalindrome(data);
-    console.log({ is });
     expect(is).toBe(result);
   });
 });
