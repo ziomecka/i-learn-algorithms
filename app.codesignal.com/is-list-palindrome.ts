@@ -85,3 +85,40 @@ export class Node<Value = number> implements ListNode<Value> {
     public next: ListNode<Value> | null
   ) {}
 }
+
+export function isListPalindromeWithStack<Value>(
+  head: ListNode<Value>
+): boolean {
+  if (!head.next) {
+    return true;
+  }
+
+  const stack: ListNode<Value>[] = [];
+
+  let node: ListNode<Value> | null = head;
+
+  while (node) {
+    stack.push(node);
+    node = node.next;
+  }
+
+  node = head;
+
+  for (let i = stack.length - 1; i >= 0; i--) {
+    if (!node) {
+      return false;
+    }
+
+    if (node.value !== stack[i].value) {
+      return false;
+    }
+
+    if (i === 0 && node.next) {
+      return false;
+    }
+
+    node = node?.next;
+  }
+
+  return true;
+}
